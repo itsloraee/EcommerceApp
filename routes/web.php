@@ -20,10 +20,10 @@ Route::get('/categories/{category:slug}', [ProductController::class, 'category']
 
 // Panier (authentification requise)
 Route::middleware(['auth'])->group(function () {
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
-    Route::patch('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update');
-    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index'); // Afficher les produits aux panier
+    Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add'); // Ajouter les produits au panier
+    Route::patch('/cart/update/{cartItem}', [CartController::class, 'update'])->name('cart.update'); // Modifier les produits au panier
+    Route::delete('/cart/remove/{cartItem}', [CartController::class, 'remove'])->name('cart.remove'); // Supprimer les produits du panier
     Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 });
 

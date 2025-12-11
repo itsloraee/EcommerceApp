@@ -25,10 +25,12 @@ class CartController extends Controller
     public function add(Product $product)
     {
         // Vérifie que le produit est disponible
+        // Si le produit n'est pas en stock, affiche un message d'erreur
         if (!$product->in_stock) {
             return back()->with('error', 'Ce produit n\'est plus en stock.');
         }
 
+        // Récupère le caddie de l'utilisateur connecté, crée le caddie si il n'existe pas
         $cart = auth()->user()->getOrCreateCart();
 
         // Vérifie si le produit est déjà dans le panier
